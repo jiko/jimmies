@@ -32,9 +32,9 @@ while True:
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	if not results:
 		print "Nobody's talking to me...\n"
-	#jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
-	#rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
-	#results.extend(rustled)
+	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
+	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
+	results.extend(rustled[0])
 	for result in results:
 		question = result['text'].replace('@jmkp','')
 		asker = result['from_user']
@@ -50,4 +50,4 @@ while True:
 	print sentence+"\n"
 	tw.poster.statuses.update(status=sentence)
 	print "Sweet Dreams...\n"
-	time.sleep(10800) # waits for three hours
+	time.sleep(3600) # waits for one hour
