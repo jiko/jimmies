@@ -6,9 +6,7 @@ lines = ["There is no need to be upset",
 	"My jimmies remain unrustled",
 	"Across the vast and majestic gulf of time and space the jimmies rustle softly",
 	"EVERYBODY'S GETTING RUSTLED",
-	"Did I just hear some rustling?"]
-
-responses = [
+	"Did I just hear some rustling?",
 	"We must embrace our jimmies and burn them as fuel for our journey",
 	"Shh no tears only dreams now",
 	"Awaken child, and embrace the glory of your jimmies",
@@ -32,9 +30,9 @@ while True:
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	if not results:
 		print "Nobody's talking to me...\n"
-	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
-	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
-	results.extend(rustled[0])
+	#jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
+	#rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
+	#results.extend(rustled[0])
 	for result in results:
 		question = result['text'].replace('@'+tw.handle,'')
 		asker = result['from_user']
