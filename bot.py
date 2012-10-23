@@ -15,13 +15,14 @@ responses = [
 	"http://www.youtube.com/watch?v=07wZiqJlu3U",
 	"http://www.youtube.com/watch?v=ygr5AHufBN4",
 	"http://www.youtube.com/watch?v=oScCgxuId98",
-	"http://www.youtube.com/watch?v=ygr5AHufBN4",
+	"http://www.youtube.com/watch?v=_1MSv2fIsbA",
 	"http://www.youtube.com/watch?v=I0D1M3xneS8",
 	"http://www.youtube.com/watch?v=vBlX86yVEVs",
 	"http://www.youtube.com/watch?v=vaXcd5-BCTY",
 	"http://www.youtube.com/watch?v=MGayPWHjyIY",
 	"http://www.youtube.com/watch?v=Md7fY_ql0fg",
-	"http://www.youtube.com/watch?v=a6rFgflr5yo"
+	"http://www.youtube.com/watch?v=a6rFgflr5yo",
+	"http://www.youtube.com/watch?v=y6ASBE0sVpQ"
 	]
 
 def genTweet(seq):
@@ -31,9 +32,9 @@ while True:
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	if not results:
 		print "Nobody's talking to me...\n"
-	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
-	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
-	results.extend(rustled)
+	#jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
+	#rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
+	#results.extend(rustled)
 	for result in results:
 		question = result['text'].replace('@jmkp','')
 		asker = result['from_user']
@@ -44,9 +45,9 @@ while True:
 		print status_id+": "+sentence+"\n"
 		if tw.last_id_replied < status_id:
 			tw.last_id_replied = status_id
-		#tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
+		tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
 	sentence = genTweet(lines)
 	print sentence+"\n"
-	#tw.poster.statuses.update(status=sentence)
+	tw.poster.statuses.update(status=sentence)
 	print "Sweet Dreams...\n"
 	time.sleep(10800) # waits for three hours
