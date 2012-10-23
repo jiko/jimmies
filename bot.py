@@ -38,7 +38,7 @@ while True:
 		asker = result['from_user']
 		status_id = str(result['id'])
 		print asker + " said '" + question + "'\n"
-		sentence = genTweet(responses)
+		sentence = genTweet(lines)
 		sentence = "@"+asker+" "+sentence
 		print status_id+": "+sentence+"\n"
 		if tw.last_id_replied < status_id:
