@@ -36,7 +36,7 @@ while True:
 	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
 	results.extend(rustled[0])
 	for result in results:
-		question = result['text'].replace('@jmkp','')
+		question = result['text'].replace('@'+tw.handle,'')
 		asker = result['from_user']
 		status_id = str(result['id'])
 		print asker + " said '" + question + "'\n"
