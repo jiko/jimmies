@@ -29,17 +29,18 @@ def genTweet(seq):
 	return random.choice(seq)
 
 while True:
-	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
-	if not results:
-		print "Nobody's talking to me...\n"
+	#results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
+	#if not results:
+	#	print "Nobody's talking to me...\n"
+	results = []
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
-	results.extend(rustled[0])
+	results.append(rustled[0])
+	print results
 	for result in results:
-		question = result['text'].replace('@RustleCrowe','')
 		asker = result['from_user']
+		print asker + " said " + result['text']
 		status_id = str(result['id'])
-		print asker + " said '" + question + "'\n"
 		sentence = genTweet(responses)
 		sentence = "@"+asker+" "+sentence
 		print status_id+": "+sentence+"\n"
