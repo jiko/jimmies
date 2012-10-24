@@ -40,7 +40,7 @@ while True:
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
 	if rustled:
-		results.extend(rustled)
+		results.append(rustled[0])
 	else:
 		print "Nobody's jimmies are rustled...\n"
 	for result in results:
