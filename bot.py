@@ -6,7 +6,8 @@ lines = ["There is no need to be upset",
 	"My jimmies remain unrustled",
 	"Across the vast and majestic gulf of time and space the jimmies rustle softly",
 	"EVERYBODY'S GETTING RUSTLED",
-	"Did I just hear some rustling?"]
+	"Did I just hear some rustling?",
+	"Don't rustle my jimmies. You wouldn't like me when my jimmies are rustled."]
 
 responses = [
 	"We must embrace our jimmies and burn them as fuel for our journey",
@@ -29,14 +30,19 @@ def genTweet(seq):
 	return random.choice(seq)
 
 while True:
+	sentence = genTweet(lines)
+	tw.poster.statuses.update(status=sentence)
+	print sentence+"\n"
+	results = []
 	#results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	#if not results:
 	#	print "Nobody's talking to me...\n"
-	results = []
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'])]
-	results.append(rustled[0])
-	print results
+	if rustled:
+		results.extend(rustled)
+	else:
+		print "Nobody's jimmies are rustled...\n"
 	for result in results:
 		asker = result['from_user']
 		print asker + " said " + result['text']
@@ -47,8 +53,5 @@ while True:
 		if tw.last_id_replied < status_id:
 			tw.last_id_replied = status_id
 		tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
-	sentence = genTweet(lines)
-	print sentence+"\n"
-	tw.poster.statuses.update(status=sentence)
 	print "Sweet Dreams...\n"
 	time.sleep(3600) # waits for one hour
