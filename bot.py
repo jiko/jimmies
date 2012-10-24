@@ -51,7 +51,7 @@ while True:
 	if not results:
 		print "Nobody's talking to me...\n"
 	else: #filter replies list
-		unrustled = re.compile('rt|unrustl*|thank*|lol|laugh*')
+		unrustled = re.compile('rt|unrustl*|thank*|lol|laugh*|ha*')
 		results = [tweet for tweet in results if !unrustled.search(tweet['text'],flags=re.IGNORECASE)]
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'].lower())]
