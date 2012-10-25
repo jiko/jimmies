@@ -26,7 +26,6 @@ responses = [
 	"http://www.youtube.com/watch?v=07wZiqJlu3U",
 	"http://www.youtube.com/watch?v=ygr5AHufBN4",
 	"http://www.youtube.com/watch?v=oScCgxuId98",
-	"http://www.youtube.com/watch?v=_1MSv2fIsbA",
 	"http://www.youtube.com/watch?v=I0D1M3xneS8",
 	"http://www.youtube.com/watch?v=vaXcd5-BCTY",
 	"http://www.youtube.com/watch?v=MGayPWHjyIY",
