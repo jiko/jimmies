@@ -55,7 +55,9 @@ while True:
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'],flags=re.I)]
 	if rustled:
-		results.append(rustled[0])
+		print "I detect a rustling in the jimmies...\n"
+		# Bulk unsolicited mentions will get your account suspended
+		#results.append(rustled[0])
 	else:
 		print "Nobody's jimmies are rustled...\n"
 	for result in results:
