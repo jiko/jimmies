@@ -23,6 +23,7 @@ while True:
 		unrustled = re.compile('rt|unrustl*|thank*|lol|laugh*|ha*|rofl*|lmf?ao',flags=re.I)
 		results = [tweet for tweet in results if not unrustled.search(tweet['text'])]
 	#jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
+	rustled = []
 	#rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'],flags=re.I)]
 	if rustled:
 		print "I detect a rustling in the jimmies...\n"
