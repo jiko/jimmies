@@ -6,7 +6,7 @@ line_file = 'lines.txt'
 lines = [line.strip() for line in open(line_file)]
 
 response_file = 'responses.txt'
-responses = [response.strip() for line in open(response_file)]
+responses = [response.strip() for response in open(response_file)]
 
 def genTweet(seq):
 	return random.choice(seq)
