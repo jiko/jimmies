@@ -15,20 +15,17 @@ while True:
 	sentence = genTweet(lines)
 	tw.poster.statuses.update(status=sentence)
 	print sentence+"\n"
-	results = []
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	if not results:
 		print "Nobody's talking to me...\n"
-	else: #filter replies list
-		unrustled = re.compile('rt|unrustl*|thank*|lol|laugh*|ha*|rofl*|lmf?ao',flags=re.I)
-		results = [tweet for tweet in results if not unrustled.search(tweet['text'])]
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
-	rustled = []
-	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'],flags=re.I)]
+	rustled = [jimi for jimi in jimmies if re.search('rustl',jimi['text'],flags=re.I)]
 	if rustled:
+		results.append(rustled[0]) # Bulk unsolicited mentions will get your account suspended
+	unrustled = re.compile('rt|unrustl|thank|lo+l|laugh|ha|rofl|lmf?ao',flags=re.I)
+	results = [tweet for tweet in results if not unrustled.search(tweet['text'])]
+	if results:
 		print "I detect a rustling in the jimmies...\n"
-		# Bulk unsolicited mentions will get your account suspended
-		results.append(rustled[0])
 	else:
 		print "Nobody's jimmies are rustled...\n"
 	for result in results:
