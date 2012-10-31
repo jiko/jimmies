@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#import init_twit as tw
+import init_twit as tw
 import time, re, random
 
 line_file = 'lines.txt'
@@ -13,22 +13,22 @@ def genTweet(seq):
 
 while True:
 	sentence = genTweet(lines)
-	#tw.poster.statuses.update(status=sentence)
+	tw.poster.statuses.update(status=sentence)
 	print sentence+"\n"
 	results = []
-	#results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
+	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	if not results:
 		print "Nobody's talking to me...\n"
 	else: #filter replies list
 		unrustled = re.compile('rt|unrustl*|thank*|lol|laugh*|ha*|rofl*|lmf?ao',flags=re.I)
 		results = [tweet for tweet in results if not unrustled.search(tweet['text'])]
-	#jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
+	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = []
-	#rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'],flags=re.I)]
+	rustled = [jimi for jimi in jimmies if re.search('rustl*',jimi['text'],flags=re.I)]
 	if rustled:
 		print "I detect a rustling in the jimmies...\n"
 		# Bulk unsolicited mentions will get your account suspended
-		#results.append(rustled[0])
+		results.append(rustled[0])
 	else:
 		print "Nobody's jimmies are rustled...\n"
 	for result in results:
@@ -39,6 +39,6 @@ while True:
 		print status_id+": "+sentence+"\n"
 		if tw.last_id_replied < status_id:
 			tw.last_id_replied = status_id
-		#tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
+		tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
 	print "Sweet Dreams...\n"
 	time.sleep(3600) # waits for one hour
