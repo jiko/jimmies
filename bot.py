@@ -36,4 +36,4 @@ while True:
 			tw.last_id_replied = status_id
 		tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
 	print "Sweet Dreams...\n"
-	time.sleep(3600) # waits for one hour
+	time.sleep(7200) # waits for one hour
