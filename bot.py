@@ -16,7 +16,7 @@ while True:
 	tw.poster.statuses.update(status=sentence)
 	print sentence+"\n"
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
-	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
+	jimmies = tw.twitter.search(q='"my jimmies"',since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl',jimi['text'],flags=re.I)]
 	if rustled:
 		results.append(rustled[0]) # Bulk unsolicited mentions will get your account suspended
