@@ -2,19 +2,24 @@
 import init_twit as tw
 import time, re, random
 
-line_file = 'lines.txt'
-lines = [line.strip() for line in open(line_file)]
+def fileToList(filename):
+	with open(filename) as f:
+		return [line.strip() for line in f]
 
-response_file = 'responses.txt'
-responses = [response.strip() for response in open(response_file)]
+line_file = 'lines.txt'
+lines = fileToList(line_file)
 
 def genTweet(seq):
 	return random.choice(seq)
 
 while True:
 	sentence = genTweet(lines)
-	tw.poster.statuses.update(status=sentence)
-	print sentence+"\n"
+	try:
+		tw.poster.statuses.update(status=sentence)
+	except twitter.api.TwitterHTTPError as error:
+		print error+"\n"
+	else:
+		print sentence+"\n"
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	rustled = [jimi for jimi in jimmies if re.search('rustl',jimi['text'],flags=re.I)]
@@ -30,7 +35,7 @@ while True:
 		asker = result['from_user']
 		print asker + " said " + result['text']
 		status_id = str(result['id'])
-		sentence = "@"+asker+" "+genTweet(responses)
+		sentence = "@"+asker+" "+genTweet(lines)
 		print status_id+": "+sentence+"\n"
 		if tw.last_id_replied < status_id:
 			tw.last_id_replied = status_id
