@@ -16,7 +16,7 @@ while True:
 	sentence = genTweet(lines)
 	try:
 		tw.poster.statuses.update(status=sentence)
-	except twitter.api.TwitterHTTPError as error:
+	except TwitterHTTPError as error:
 		print error+"\n"
 	else:
 		print sentence+"\n"
@@ -40,7 +40,7 @@ while True:
 			tw.last_id_replied = status_id
 		try:
 			tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
-		except twitter.api.TwitterHTTPError as error:
+		except TwitterHTTPError as error:
 			print error+"\n"
 		else:
 			print "in reply to "+status_id+": "+sentence+"\n"
