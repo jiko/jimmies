@@ -45,4 +45,4 @@ while True:
 		else:
 			print "in reply to "+status_id+": "+sentence+"\n"
 	print "Sweet Dreams...\n"
-	time.sleep(7200) # waits for one hour
+	time.sleep(7200) # waits for two hours
