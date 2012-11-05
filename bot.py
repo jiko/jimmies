@@ -36,9 +36,13 @@ while True:
 		print asker + " said " + result['text']
 		status_id = str(result['id'])
 		sentence = "@"+asker+" "+genTweet(lines)
-		print status_id+": "+sentence+"\n"
 		if tw.last_id_replied < status_id:
 			tw.last_id_replied = status_id
-		tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
+		try:
+			tw.poster.statuses.update(status=sentence,in_reply_to_status_id=status_id)
+		except twitter.api.TwitterHTTPError as error:
+			print error+"\n"
+		else:
+			print "in reply to "+status_id+": "+sentence+"\n"
 	print "Sweet Dreams...\n"
 	time.sleep(7200) # waits for one hour
