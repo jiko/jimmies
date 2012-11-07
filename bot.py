@@ -39,9 +39,9 @@ def reply(mention,seq):
 
 
 while True:
-	rustled = re.compile('rt\s|rustl|thank|lo+l|laugh|hah|rofl|lmf?ao',flags=re.I)
+	unrustled = re.compile('rt\s|unrustl|thank|lo+l|laugh|hah|rofl|lmf?aoi|stahp',flags=re.I)
 	results = tw.twitter.search(q="@"+tw.handle,since_id=tw.last_id_replied)['results']
-	results = [t for t in results if not rustled.search(t['text'])]
+	results = [t for t in results if not unrustled.search(t['text'])]
 	if results:
 		[reply(result,'replies') for result in results]
 	else:
@@ -49,6 +49,7 @@ while True:
 	rustled = re.compile('rustl',flags=re.I)
 	jimmies = tw.twitter.search(q="my jimmies",since_id=tw.last_id_replied)['results']
 	jimmies = [jimi for jimi in jimmies if rustled.search(jimi['text'])]
+	jimmies = [j for j in jimmies if not unrustled.search(j['text'])]
 	if jimmies:
 		log("I detect a rustling in the jimmies...")
 		reply(jimmies[0],"responses") # Bulk unsolicited mentions will get you suspended
