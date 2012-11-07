@@ -10,6 +10,7 @@ Requires:
 * [pip](http://www.pip-installer.org/en/latest/installing.html)
 
 Once you have your environment setup, run:
+
 	pip install -r requirements.txt
 
 See init_twit.py for info on setting up your Twitter application.
