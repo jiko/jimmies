@@ -22,7 +22,7 @@ def tweet(seq,irtsi=None,at=None):
 			tw.poster.statuses.update(status=status,in_reply_to_status_id=irtsi)
 		else:
 			tw.poster.statuses.update(status=status)
-	except tw.poster.TwitterHTTPError as error:
+	except tw.TwitterError as error:
 		log(error)
 	else:
 		if irtsi: 
