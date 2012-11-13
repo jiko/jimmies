@@ -23,7 +23,7 @@ def tweet(seq,irtsi=None,at=None):
 		else:
 			tw.poster.statuses.update(status=status)
 	except tw.TwitterError as error:
-		log("".join(error.args))
+		log(" ".join(error.args))
 	else:
 		if irtsi: 
 			status = "In reply to "+irtsi+": "+status
