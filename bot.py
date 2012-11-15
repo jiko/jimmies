@@ -1,9 +1,9 @@
 #!/usr/bin/python
 import init_twit as tw
-import time, re, random, os
+import time, re, random, os, codecs
 
 def log(msg):
-	with open('log','a') as f:
+	with codecs.open('log','a','utf-8') as f:
 		f.write(msg+"\n")
 	print msg
 
@@ -19,11 +19,12 @@ def tweet(seq,irtsi=None,at=None):
 	try:
 		if at and irtsi:
 			status = "@"+at+" "+status
-			tw.poster.statuses.update(status=status,in_reply_to_status_id=irtsi)
+			#tw.poster.statuses.update(status=status,in_reply_to_status_id=irtsi)
 		else:
-			tw.poster.statuses.update(status=status)
+			pass
+			#tw.poster.statuses.update(status=status)
 	except tw.TwitterError as error:
-		log(" ".join(error.args))
+		log(error.response_data)
 	else:
 		if irtsi: 
 			status = "In reply to "+irtsi+": "+status
@@ -57,4 +58,4 @@ while True:
 		log("Nobody's jimmies are rustled...")
 	tweet('lines')
 	log("Sweet Dreams...")
-	time.sleep(7200) # waits for two hours
+	time.sleep(9000) # waits for 2.5 hours
