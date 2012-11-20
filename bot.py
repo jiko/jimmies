@@ -3,9 +3,9 @@ import init_twit as tw
 import time, re, random, os, codecs
 
 def log(msg):
+	print msg
 	with codecs.open('log','a','utf-8') as f:
 		f.write(msg+"\n")
-	print msg
 
 def fileToList(filename):
 	with open(filename) as f:
