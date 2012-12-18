@@ -58,4 +58,4 @@ while True:
 		log("Nobody's jimmies are rustled...")
 	tweet('lines')
 	log("Sweet Dreams...")
-	time.sleep(9000) # waits for 2.5 hours
+	time.sleep(10800) # waits for 2.5 hours
