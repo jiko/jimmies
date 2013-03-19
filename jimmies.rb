@@ -25,9 +25,9 @@ end
 # here's a list of things to exclude from searches
 exclude "unrustled", "thank", "thanks", "stop"
 
-search "'my jimmies'", opts={:count => 1} do |tweet|
-  reply "#USER# " + pick_random_line(path+"responses.txt"), tweet
-end
+#search "'my jimmies'", opts={:count => 1} do |tweet|
+#  reply "#USER# " + pick_random_line(path+"responses.txt"), tweet
+#end
 
 replies do |tweet|
   reply "#USER# " + pick_random_line(path+"replies.txt"), tweet
